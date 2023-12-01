@@ -1,10 +1,10 @@
-FROM golang:alpine AS builder
+FROM golang:1.21.4-alpine3.18 AS builder
 WORKDIR /go/src
 COPY . .
 
 RUN export CGO_ENABLED=0 && go install && go build -o /
 
-FROM golang:alpine AS runtime
+FROM golang:1.21.4-alpine3.18 AS runtime
 WORKDIR /app
 
 RUN apk update && apk add --no-cache git
